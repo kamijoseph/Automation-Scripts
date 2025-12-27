@@ -39,7 +39,7 @@ def organize_directory(target_dir: Path):
         logging.error(f"directory does not exit: {target_dir}")
         return
     
-    if not target_dir.is_dir();
+    if not target_dir.is_dir():
         logging.error(f"not a directory: {target_dir}")
         return
     
@@ -62,5 +62,19 @@ def organize_directory(target_dir: Path):
                 dest_dir = target_dir / destination_folder
                 dest_dir.mkdir(exist_ok=True)
 
+                shutil.move(
+                    str(file_path),
+                    dest_dir / file_path.name
+                )
+                logging.info(f"moved: {file_path.name} --> {destination_folder}")
+
         except PermissionError:
             logging.warning(f"permission denied: {item.name}")
+
+        except shutil.Error as e:
+            logging.warning(f"file move error ({item.name}) {e}")
+
+        except Exception as e:
+            logging.error(f"Unexpected error ({item.name}): {e}")
+    
+    logging.info("organization completed succesfully.")

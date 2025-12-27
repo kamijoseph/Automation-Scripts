@@ -78,3 +78,7 @@ def organize_directory(target_dir: Path):
             logging.error(f"Unexpected error ({item.name}): {e}")
     
     logging.info("organization completed succesfully.")
+
+if __name__ == "__main__":
+    TARGWT_DIRECTORY =  Path.home() / "Downloads"
+    organize_directory(TARGWT_DIRECTORY)

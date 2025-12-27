@@ -24,10 +24,39 @@ logging.basicConfig(
 # file type map
 FILE_CATEGORIES = {
     "Documents": {".pdf", ".docx", ".doc", ".txt", ".xlsx", ".pptx", ".zip", ".tar", ".gz", ".rar", ".7z", ".csv"},
-    "Images": {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg"},
+    "Pictures": {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg"},
     "Videos": {".mp4", ".mkv", ".avi", ".mov"},
     "Audio": {".mp3", ".wav", ".flac"},
     "Programming": {".py", ".c", ".cpp", ".js", ".html", ".css"},
 }
 
-DEFAULT_FOLDERS = "Others"
+DEFAULT_FOLDER = "Others"
+
+# organize function
+def organize_directory(target_dir: Path):
+    if not target_dir.exists():
+        logging.error(f"directory does not exit: {target_dir}")
+        return
+    
+    if not target_dir.is_dir();
+        logging.error(f"not a directory: {target_dir}")
+        return
+    
+    logging.info(f"starting organization of {target_dir}")
+
+    for item in os.scandir(target_dir):
+        try:
+            if not item.is_file():
+                continue
+
+            file_path = Path(item.path)
+            extension  = file_path.suffix.lower()
+            destination_folder = DEFAULT_FOLDER
+
+            for category, extensions in FILE_CATEGORIES.items():
+                if extension in extensions:
+                    destination_folder = category
+                    break
+
+        except PermissionError:
+            logging.warning(f"permission denied: {item.name}")

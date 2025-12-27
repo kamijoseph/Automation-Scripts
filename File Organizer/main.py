@@ -23,11 +23,12 @@ logging.basicConfig(
 
 # file type map
 FILE_CATEGORIES = {
-    "Documents": {".pdf", ".docx", ".doc", ".txt", ".xlsx", ".pptx", ".zip", ".tar", ".gz", ".rar", ".7z", ".csv"},
-    "Pictures": {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg"},
+    "Documents": {".pdf", ".docx", ".doc", ".txt", ".xlsx", ".pptx", ".csv"},
+    "Images": {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg"},
     "Videos": {".mp4", ".mkv", ".avi", ".mov"},
     "Audio": {".mp3", ".wav", ".flac"},
-    "Programming": {".py", ".c", ".cpp", ".js", ".html", ".css"},
+    "Archives": {".zip", ".tar", ".gz", ".rar", ".7z"},
+    "Code": {".py", ".c", ".cpp", ".js", ".html", ".css"},
 }
 
 DEFAULT_FOLDER = "Others"
@@ -57,6 +58,9 @@ def organize_directory(target_dir: Path):
                 if extension in extensions:
                     destination_folder = category
                     break
+
+                dest_dir = target_dir / destination_folder
+                dest_dir.mkdir(exist_ok=True)
 
         except PermissionError:
             logging.warning(f"permission denied: {item.name}")

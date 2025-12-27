@@ -23,12 +23,12 @@ logging.basicConfig(
 
 # file type map
 FILE_CATEGORIES = {
-    "Documents": {".pdf", ".docx", ".doc", ".txt", ".xlsx", ".pptx", ".csv"},
-    "Images": {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg"},
+    "Documents": {".pdf", ".docx", ".doc", ".txt", ".xlsx", ".pptx", ".csv", "json", ".odg", ".odt"},
+    "Images": {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".aseprite"},
     "Videos": {".mp4", ".mkv", ".avi", ".mov"},
     "Audio": {".mp3", ".wav", ".flac"},
-    "Archives": {".zip", ".tar", ".gz", ".rar", ".7z"},
-    "Code": {".py", ".c", ".cpp", ".js", ".html", ".css"},
+    "Archives": {".zip", ".tar", ".gz", ".rar", ".7z", ".sav", ".pkl", ".sql", ".keras"},
+    "Code": {".py", ".c", ".cpp", ".js", ".html", ".css", ".ipynb"},
 }
 
 DEFAULT_FOLDER = "Others"
@@ -59,14 +59,14 @@ def organize_directory(target_dir: Path):
                     destination_folder = category
                     break
 
-                dest_dir = target_dir / destination_folder
-                dest_dir.mkdir(exist_ok=True)
+            dest_dir = target_dir / destination_folder
+            dest_dir.mkdir(exist_ok=True)
 
-                shutil.move(
-                    str(file_path),
-                    dest_dir / file_path.name
-                )
-                logging.info(f"moved: {file_path.name} --> {destination_folder}")
+            shutil.move(
+                str(file_path),
+                dest_dir / file_path.name
+            )
+            logging.info(f"moved: {file_path.name} --> {destination_folder}")
 
         except PermissionError:
             logging.warning(f"permission denied: {item.name}")

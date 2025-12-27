@@ -20,3 +20,14 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
+
+# file type map
+FILE_CATEGORIES = {
+    "Documents": {".pdf", ".docx", ".doc", ".txt", ".xlsx", ".pptx", ".zip", ".tar", ".gz", ".rar", ".7z", ".csv"},
+    "Images": {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg"},
+    "Videos": {".mp4", ".mkv", ".avi", ".mov"},
+    "Audio": {".mp3", ".wav", ".flac"},
+    "Programming": {".py", ".c", ".cpp", ".js", ".html", ".css"},
+}
+
+DEFAULT_FOLDERS = "Others"

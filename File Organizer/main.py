@@ -23,7 +23,7 @@ logging.basicConfig(
 
 # file type map
 FILE_CATEGORIES = {
-    "Documents": {".pdf", ".docx", ".doc", ".txt", ".xlsx", ".pptx", ".csv", "json", ".odg", ".odt"},
+    "Documents": {".pdf", ".docx", ".doc", ".txt", ".xlsx", ".pptx", ".csv", ".json", ".odg", ".odt"},
     "Images": {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".aseprite"},
     "Videos": {".mp4", ".mkv", ".avi", ".mov"},
     "Audio": {".mp3", ".wav", ".flac"},
